@@ -127,6 +127,7 @@ impl Config {
     pub fn config_path() -> Result<PathBuf> {
         let config_dir = dirs::config_dir()
             .context("Failed to get config directory")?;
-        Ok(config_dir.join("8xtract").join("config.toml"))
+        // Use 'xtract' as directory name for better filesystem compatibility
+        Ok(config_dir.join("xtract").join("config.toml"))
     }
 }

@@ -61,7 +61,7 @@ impl OcrClient {
         let client = reqwest::blocking::Client::builder()
             .timeout(std::time::Duration::from_secs(300))
             .build()
-            .expect("Failed to create HTTP client");
+            .expect("Failed to create HTTP client - check network configuration");
         
         Self { client, config }
     }
@@ -79,6 +79,7 @@ impl OcrClient {
 
     /// Extract text from a base64-encoded image
     pub fn extract_from_base64(&self, base64_img: &str, prompt: Option<&str>) -> Result<String> {
+        // Note: Images are encoded as PNG in encode_image_to_base64, regardless of original format
         let data_url = format!("data:image/png;base64,{}", base64_img);
         
         let default_prompt = if self.config.extraction.output_format == "markdown" {
@@ -118,7 +119,7 @@ impl OcrClient {
 
         let status = response.status();
         if !status.is_success() {
-            let error_text = response.text().unwrap_or_else(|_| "Unknown error".to_string());
+            let error_text = response.text().unwrap_or_else(|_| "Failed to read error response body".to_string());
             anyhow::bail!("OCR API request failed with status {}: {}", status, error_text);
         }
 

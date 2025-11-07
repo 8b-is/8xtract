@@ -81,9 +81,9 @@ cargo run -p deepseek-ocr-server --release -- --host 0.0.0.0 --port 8000
 ## Configuration
 
 8xtract stores its configuration in:
-- Linux: `~/.config/8xtract/config.toml`
-- macOS: `~/Library/Application Support/8xtract/config.toml`
-- Windows: `%APPDATA%\8xtract\config.toml`
+- Linux: `~/.config/xtract/config.toml`
+- macOS: `~/Library/Application Support/xtract/config.toml`
+- Windows: `%APPDATA%\xtract\config.toml`
 
 ### View Configuration
 

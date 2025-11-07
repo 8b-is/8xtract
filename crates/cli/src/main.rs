@@ -129,7 +129,7 @@ fn main() -> Result<()> {
                 let config = Config::load()
                     .context("Failed to load configuration")?;
                 let config_str = toml::to_string_pretty(&config)
-                    .context("Failed to serialize configuration")?;
+                    .context("Failed to serialize configuration for display")?;
                 println!("{}", config_str);
             }
         }
