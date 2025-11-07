@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::PathBuf;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct Config {
     #[serde(default)]
     pub ocr: OcrConfig,
@@ -34,15 +34,6 @@ pub struct ExtractionConfig {
     
     #[serde(default = "default_preserve_layout")]
     pub preserve_layout: bool,
-}
-
-impl Default for Config {
-    fn default() -> Self {
-        Self {
-            ocr: OcrConfig::default(),
-            extraction: ExtractionConfig::default(),
-        }
-    }
 }
 
 impl Default for OcrConfig {
